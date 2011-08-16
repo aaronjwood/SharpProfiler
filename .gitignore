@@ -1,0 +1,5 @@
+bin/*
+publish/*
+obj/*
+*.pfx
+*.ico

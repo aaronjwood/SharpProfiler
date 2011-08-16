@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sharp_Profiler.SharpProfiler"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sharp Profiler" Height="350" Width="525">
+    <DockPanel Name="mainDock">
+        <TabControl Name="tabControl1" DockPanel.Dock="Left">
+            <TabItem Header="CPU" Name="cpuTab">
+                <Grid>
+                    <DockPanel Name="cpuDock">
+                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="cpuInfo" Text="" VerticalAlignment="Stretch" />
+                    <ListBox DockPanel.Dock="Bottom"  HorizontalAlignment="Stretch" Name="cpuList" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsHitTestVisible="False" Focusable="False" Margin="0" ClipToBounds="False" />
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Memory" Name="memoryTab">
+                <Grid>
+                    <ListBox HorizontalAlignment="Stretch" Name="memoryList" VerticalAlignment="Stretch" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Storage" Name="storageTab">
+                <Grid>
+                    <ListBox HorizontalAlignment="Stretch" Name="listBox1" VerticalAlignment="Stretch" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
