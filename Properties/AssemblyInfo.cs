@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Sharp Profiler")]
-[assembly: AssemblyDescription("A tool for system monitoring and reporting. Real-time CPU usage, memory usage, and disk usage. Intricate information about your OS, CPU, memory, disks, BIOS, chipset, and more!")]
+[assembly: AssemblyDescription("A tool for system monitoring and reporting. Real-time CPU usage, memory usage, and disk usage. Intricate information about your OS, CPU, memory, disks, BIOS, chipset, and more.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Aaron J Wood")]
 [assembly: AssemblyProduct("Sharp Profiler")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

@@ -7,8 +7,8 @@
             <TabItem Header="CPU" Name="cpuTab">
                 <Grid>
                     <DockPanel Name="cpuDock">
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="cpuInfo" Text="" VerticalAlignment="Stretch" />
-                    <ListBox DockPanel.Dock="Bottom"  HorizontalAlignment="Stretch" Name="cpuList" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsHitTestVisible="False" Focusable="False" Margin="0" ClipToBounds="False" />
+                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Padding="5,5,5,5" Name="cpuInfo" Text="" VerticalAlignment="Stretch" />
+                        <ListBox DockPanel.Dock="Bottom"  HorizontalAlignment="Stretch" Name="cpuList" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,5,5,5" />
                     </DockPanel>
                 </Grid>
             </TabItem>

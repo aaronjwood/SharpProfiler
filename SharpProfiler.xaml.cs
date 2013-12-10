@@ -8,33 +8,33 @@ namespace Sharp_Profiler
 {
     public partial class SharpProfiler : Window
     {
-        private DispatcherTimer timer;
+        private Cpu cpu = new Cpu();
+        private DispatcherTimer timer = new DispatcherTimer();
 
         public SharpProfiler()
         {
             InitializeComponent();
-            Cpu cpu = new Cpu();
-            timer = new DispatcherTimer();
 
-            cpuInfo.Text = "Number of logical processors: " + cpu.countCores().ToString()+Environment.NewLine;
-            cpuInfo.Text += "Number of physical cores: " + cpu.countCpu();
-            //Build the performance counters
-            for (int i = 0; i < cpu.countCores(); i++)
-            {
-                cpu.getCounters()[i] = new PerformanceCounter("Processor", "% Processor Time", i.ToString());
-                cpuList.Items.Add("Core #" + i + ": " + cpu.getCounters()[i].NextValue().ToString("0.##") + "%");
+            cpuInfo.Text = "CPU Name: " + cpu.getCpuName() + Environment.NewLine;
+            cpuInfo.Text += "Number of physical processors: " + cpu.getPhysicalProcessorCount().ToString() + Environment.NewLine;
+            cpuInfo.Text += "Number of physical cores: " + cpu.getPhysicalCoreCount() + Environment.NewLine;
+            cpuInfo.Text += "Number of logical processors: " + cpu.getLogicalProcessorCount().ToString();
 
-            }
-
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Interval = TimeSpan.FromSeconds(.7);
             timer.Tick += delegate(object sender, EventArgs e)
             {
-                for (int i = 0; i < cpuList.Items.Count; i++)
-                {
-                    cpuList.Items[i] = "Core #" + i + ": " + cpu.getCounters()[i].NextValue().ToString("0.##") + "%";
-                }
+                updateCpuUsage();
             };
             timer.Start();
+        }
+
+        private void updateCpuUsage()
+        {
+            cpuList.Items.Clear();
+            for (int i = 0; i < cpu.getLogicalProcessorCount(); i++)
+            {
+                cpuList.Items.Add("Core #" + i + ":   " + cpu.getCpuUsageCounters()[i].NextValue().ToString("00.00") + "%");
+            }
         }
     }
 }
