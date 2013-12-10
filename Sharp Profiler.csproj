@@ -78,7 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="SharpProfiler.xaml">
+    <Page Include="Windows\SharpProfiler.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -87,7 +87,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CPU\Cpu.cs" />
-    <Compile Include="SharpProfiler.xaml.cs">
+    <Compile Include="Windows\SharpProfiler.xaml.cs">
       <DependentUpon>SharpProfiler.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
