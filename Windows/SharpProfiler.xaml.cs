@@ -3,50 +3,62 @@ using System.Windows;
 using System.Diagnostics;
 using System.Windows.Threading;
 using Sharp_Profiler.CPU;
-using System.ComponentModel;
 
 namespace Sharp_Profiler
 {
     public partial class SharpProfiler : Window
     {
-        private BackgroundWorker bw = new BackgroundWorker();
-        private Cpu cpu = new Cpu();
-        private DispatcherTimer timer = new DispatcherTimer();
-
-        //Wow, do I need to completely rewrite the UI or what?! Keep this temporary mess for now...
-        //Should I even kick off some of the work on a different thread? WMI queries seem pretty performant so far...
+        private Cpu cpu;
+        private DispatcherTimer timer;
 
         public SharpProfiler()
         {
             InitializeComponent();
-            bw.DoWork += new DoWorkEventHandler(bwDoWork);
-            bw.RunWorkerAsync();
-        }
+            cpu = new Cpu();
+            timer = new DispatcherTimer();
 
-        public void bwDoWork(object sender, DoWorkEventArgs e)
-        {
-            this.Dispatcher.BeginInvoke((Action)delegate(){
-                cpuInfo.Text = "CPU Name: " + cpu.getName() + Environment.NewLine;
-                cpuInfo.Text += "Number of physical processors: " + cpu.getPhysicalProcessorCount().ToString() + Environment.NewLine;
-                cpuInfo.Text += "Number of physical cores: " + cpu.getNumberOfCores() + Environment.NewLine;
-                cpuInfo.Text += "Number of logical processors: " + cpu.getNumberOfLogicalProcessors().ToString();
-            });
+            cpuName.Content = cpu.getName();
+            cpuAddressWidth.Content = cpu.getAddressWidth();
+            cpuArchitecture.Content = cpu.getArchitecture();
+            cpuMaxClockSpeed.Content = cpu.getMaxClockSpeed() + "MHz";
+            cpuVoltage.Content = cpu.getVoltage();
+            cpuDeviceId.Content = cpu.getDeviceId();
+            cpuFamily.Content = cpu.getFamily() == "Other" ? cpu.getFamily() + " " + cpu.getOtherFamilyDescription() : cpu.getFamily();
+            cpuL2CacheSize.Content = cpu.getL2CacheSize() + "KB";
+            cpuL2CacheSpeed.Content = cpu.getL2CacheSpeed() + "MHz";
+            cpuL3CacheSize.Content = cpu.getL3CacheSize() + "KB";
+            cpuL3CacheSpeed.Content = cpu.getL3CacheSpeed() + "MHz";
+            cpuManufacturer.Content = cpu.getManufacturer();
+            cpuNumberOfCores.Content = cpu.getNumberOfCores();
+            cpuNumberOfLogicalProcessors.Content = cpu.getNumberOfLogicalProcessors();
+            cpuNumberOfPhysicalProcessors.Content = cpu.getNumberOfPhysicalProcessors();
+            cpuPlugAndPlayDeviceId.Content = cpu.getPnpDeviceId();
+            cpuPowerManagementCapabilities.Content = cpu.getPowerManagementCapabilities();
+            cpuId.Content = cpu.getProcessorId();
+            cpuType.Content = cpu.getProcessorType();
+            cpuRevision.Content = cpu.getRevision();
 
-            timer.Interval = TimeSpan.FromSeconds(.7);
+            timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += delegate(object timerSender, EventArgs timerEventArgs)
             {
                 updateCpuUsage();
+                updateCpuClockSpeed();
             };
             timer.Start();
         }
 
         private void updateCpuUsage()
         {
-            cpuList.Items.Clear();
+            cpuUsageList.Items.Clear();
             for (int i = 0; i < cpu.getNumberOfLogicalProcessors(); i++)
             {
-                cpuList.Items.Add("Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%");
+                cpuUsageList.Items.Add("Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%");
             }
+        }
+
+        private void updateCpuClockSpeed()
+        {
+            cpuCurrentClockSpeed.Content = cpu.getCurrentClockSpeed() + "MHz";
         }
     }
 }

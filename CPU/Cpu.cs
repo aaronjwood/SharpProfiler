@@ -42,7 +42,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the CPU architecture
         /// </summary>
         /// <returns>CPU Architecture</returns>
-        public string getArch()
+        public string getArchitecture()
         {
             try
             {
@@ -124,6 +124,10 @@ namespace Sharp_Profiler.CPU
             }
         }
 
+        /// <summary>
+        /// Gets the processor family type
+        /// </summary>
+        /// <returns>CPU family type</returns>
         public string getFamily()
         {
             try
@@ -359,7 +363,7 @@ namespace Sharp_Profiler.CPU
         /// <summary>
         /// Gets the CPU's L2 cache size
         /// </summary>
-        /// <returns>CPU L2 cache size</returns>
+        /// <returns>CPU L2 cache size in KB</returns>
         public UInt32 getL2CacheSize()
         {
             try
@@ -391,7 +395,7 @@ namespace Sharp_Profiler.CPU
         /// <summary>
         /// Gets the CPU's L3 cache size
         /// </summary>
-        /// <returns>CPU L3 cache size</returns>
+        /// <returns>CPU L3 cache size in KB</returns>
         public UInt32 getL3CacheSize()
         {
             try
@@ -437,6 +441,22 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
+        /// Gets the CPU's maximum clock speed
+        /// </summary>
+        /// <returns>The CPU's maximum clock speed in MHz</returns>
+        public UInt32 getMaxClockSpeed()
+        {
+            try
+            {
+                return (UInt32)this.queryWmi("SELECT MaxClockSpeed FROM Win32_Processor", "MaxClockSpeed");
+            }
+            catch (NullReferenceException e)
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
         /// Gets the CPU's name
         /// </summary>
         /// <returns>The full name of the CPU</returns>
@@ -449,6 +469,22 @@ namespace Sharp_Profiler.CPU
             catch (NullReferenceException e)
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of cores in the CPU
+        /// </summary>
+        /// <returns>The number of CPU cores</returns>
+        public UInt32 getNumberOfCores()
+        {
+            try
+            {
+                return (UInt32)this.queryWmi("SELECT NumberOfCores FROM Win32_Processor", "NumberOfCores");
+            }
+            catch (NullReferenceException e)
+            {
+                return 0;
             }
         }
 
@@ -472,7 +508,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the number of physical processors in a system
         /// </summary>
         /// <returns>The number of physical processors</returns>
-        public int getPhysicalProcessorCount()
+        public int getNumberOfPhysicalProcessors()
         {
             try
             {
@@ -485,19 +521,20 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
-        /// Gets the number of cores in the CPU
+        /// Gets additional family information if the family property is set to 1 (Other)
         /// </summary>
-        /// <returns>The number of CPU cores</returns>
-        public UInt32 getNumberOfCores()
+        /// <returns>Additional family information</returns>
+        public string getOtherFamilyDescription()
         {
             try
             {
-                return (UInt32)this.queryWmi("SELECT NumberOfCores FROM Win32_Processor", "NumberOfCores");
+                return (string)this.queryWmi("SELECT OtherFamilyDescription FROM Win32_Processor", "OtherFamilyDescription");
             }
             catch (NullReferenceException e)
             {
-                return 0;
+                return null;
             }
+
         }
 
         /// <summary>

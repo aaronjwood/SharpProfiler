@@ -1,14 +1,109 @@
 ﻿<Window x:Class="Sharp_Profiler.SharpProfiler"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Sharp Profiler" Height="350" Width="525">
+        Title="Sharp Profiler" Height="500" Width="750">
     <DockPanel Name="mainDock">
-        <TabControl Name="tabControl1">
+        <TabControl Name="deviceTabs">
             <TabItem Header="CPU" Name="cpuTab">
                 <Grid>
                     <DockPanel Name="cpuDock">
-                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Stretch" Padding="5,5,5,5" Name="cpuInfo" Text="" VerticalAlignment="Stretch" />
-                        <ListBox DockPanel.Dock="Bottom"  HorizontalAlignment="Stretch" Name="cpuList" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,5,5,5" />
+                        <Grid DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Name:" />
+                                <Label Padding="4,4,4,4" Grid.Row="0" Grid.Column="1" Name="cpuName" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Address Width:" />
+                                <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="cpuAddressWidth" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="2" Grid.Column="0" Text="Architecture:" />
+                                <Label Padding="4,4,4,4" Grid.Row="2" Grid.Column="1" Name="cpuArchitecture" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="3" Grid.Column="0" Text="Maximum Rated Clock Speed:" />
+                                <Label Padding="4,4,4,4" Grid.Row="3" Grid.Column="1" Name="cpuMaxClockSpeed" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="4" Grid.Column="0" Text="Current Clock Speed:" />
+                                <Label Padding="4,4,4,4" Grid.Row="4" Grid.Column="1" Name="cpuCurrentClockSpeed" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="5" Grid.Column="0" Text="Voltage:" />
+                                <Label Padding="4,4,4,4" Grid.Row="5" Grid.Column="1" Name="cpuVoltage" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="6" Grid.Column="0" Text="Device ID:" />
+                                <Label Padding="4,4,4,4" Grid.Row="6" Grid.Column="1" Name="cpuDeviceId" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="7" Grid.Column="0" Text="L2 Cache Size:" />
+                                <Label Padding="4,4,4,4" Grid.Row="7" Grid.Column="1" Name="cpuL2CacheSize" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="8" Grid.Column="0" Text="L2 Cache Speed:" />
+                                <Label Padding="4,4,4,4" Grid.Row="8" Grid.Column="1" Name="cpuL2CacheSpeed" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="9" Grid.Column="0" Text="L3 Cache Size:" />
+                                <Label Padding="4,4,4,4" Grid.Row="9" Grid.Column="1" Name="cpuL3CacheSize" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="10" Grid.Column="0" Text="L3 Cache Speed:" />
+                                <Label Padding="4,4,4,4" Grid.Row="10" Grid.Column="1" Name="cpuL3CacheSpeed" />
+                            </Grid>
+                            <Grid Margin="15,0,0,0" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Manufacturer:" />
+                                <Label Padding="4,4,4,4" Grid.Row="0" Grid.Column="1" Name="cpuManufacturer" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Family:" />
+                                <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="cpuFamily" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="2" Grid.Column="0" Text="Number of Cores:" />
+                                <Label Padding="4,4,4,4" Grid.Row="2" Grid.Column="1" Name="cpuNumberOfCores" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="3" Grid.Column="0" Text="Number of Logical Processors:" />
+                                <Label Padding="4,4,4,4" Grid.Row="3" Grid.Column="1" Name="cpuNumberOfLogicalProcessors" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="4" Grid.Column="0" Text="Number of Physical Processors:" />
+                                <Label Padding="4,4,4,4" Grid.Row="4" Grid.Column="1" Name="cpuNumberOfPhysicalProcessors" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="5" Grid.Column="0" Text="Plug and Play Device ID:" />
+                                <Label Padding="4,4,4,4" Grid.Row="5" Grid.Column="1" Name="cpuPlugAndPlayDeviceId" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="6" Grid.Column="0" Text="Power Management Capabilities:" />
+                                <Label Padding="4,4,4,4" Grid.Row="6" Grid.Column="1" Name="cpuPowerManagementCapabilities" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="7" Grid.Column="0" Text="Processor ID:" />
+                                <Label Padding="4,4,4,4" Grid.Row="7" Grid.Column="1" Name="cpuId" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="8" Grid.Column="0" Text="Processor Type:" />
+                                <Label Padding="4,4,4,4" Grid.Row="8" Grid.Column="1" Name="cpuType" />
+                                <TextBlock Padding="4,4,4,4" Grid.Row="9" Grid.Column="0" Text="Revision:" />
+                                <Label Padding="4,4,4,4" Grid.Row="9" Grid.Column="1" Name="cpuRevision" />
+                            </Grid>
+                        </Grid>
+                        <ListBox DockPanel.Dock="Bottom" Name="cpuUsageList" Padding="1,1,1,1" />
                     </DockPanel>
                 </Grid>
             </TabItem>
