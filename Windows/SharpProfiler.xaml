@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Sharp Profiler" Height="350" Width="525">
     <DockPanel Name="mainDock">
-        <TabControl Name="tabControl1" DockPanel.Dock="Left">
+        <TabControl Name="tabControl1">
             <TabItem Header="CPU" Name="cpuTab">
                 <Grid>
                     <DockPanel Name="cpuDock">
