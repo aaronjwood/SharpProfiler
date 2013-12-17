@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Management;
+﻿using OpenHardwareMonitor.Hardware;
+using System;
 using System.Diagnostics;
+using System.Management;
 
 namespace Sharp_Profiler.CPU
 {
@@ -11,6 +11,7 @@ namespace Sharp_Profiler.CPU
         /// Gets/sets the performance property which holds performance counters for the CPU
         /// </summary>
         public PerformanceCounter[] UsageCounters { get; set; }
+        private Computer cpu;
 
         /// <summary>
         /// Creates a new Cpu object and kicks off performance counters
@@ -19,6 +20,9 @@ namespace Sharp_Profiler.CPU
         {
             UsageCounters = new PerformanceCounter[this.getNumberOfLogicalProcessors()];
             this.calculateUsage();
+            this.cpu = new Computer();
+            this.cpu.CPUEnabled = true;
+            this.cpu.Open();
         }
 
         /// <summary>
@@ -77,16 +81,23 @@ namespace Sharp_Profiler.CPU
         /// Gets the current clock speed of the CPU
         /// </summary>
         /// <returns>Current CPU clock speed in MHz</returns>
-        public UInt32 getCurrentClockSpeed()
+        public float? getCurrentClockSpeed()
         {
-            try
+            foreach (IHardware hardware in this.cpu.Hardware)
             {
-                return (UInt32)this.queryWmi("SELECT CurrentClockSpeed FROM Win32_Processor", "CurrentClockSpeed");
+                if (hardware.HardwareType == HardwareType.CPU)
+                {
+                    hardware.Update();
+                    foreach (ISensor sensor in hardware.Sensors)
+                    {
+                        if (sensor.SensorType == SensorType.Clock)
+                        {
+                            return sensor.Value.HasValue ? (float?)Math.Ceiling((double)sensor.Value) : null;
+                        }
+                    }
+                }
             }
-            catch (NullReferenceException e)
-            {
-                return 0;
-            }
+            return null;
         }
 
         /// <summary>
@@ -95,7 +106,6 @@ namespace Sharp_Profiler.CPU
         /// <returns>CPU voltage or 0 if the SMBIOS doesn't present a voltage value</returns>
         public Decimal getVoltage()
         {
-
             //Make sure we can actually obtain the voltage
             try
             {
@@ -441,19 +451,49 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
+        /// Gets the minimum CPU clock speed value that has been read
+        /// </summary>
+        /// <returns>The minimum CPU clock speed value</returns>
+        public float? getMinClockSpeed()
+        {
+            foreach (IHardware hardware in this.cpu.Hardware)
+            {
+                if (hardware.HardwareType == HardwareType.CPU)
+                {
+                    hardware.Update();
+                    foreach (ISensor sensor in hardware.Sensors)
+                    {
+                        if (sensor.SensorType == SensorType.Clock)
+                        {
+                            return sensor.Value.HasValue ? (float?)Math.Ceiling((double)sensor.Min) : null;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Gets the CPU's maximum clock speed
         /// </summary>
         /// <returns>The CPU's maximum clock speed in MHz</returns>
-        public UInt32 getMaxClockSpeed()
+        public float? getMaxClockSpeed()
         {
-            try
+            foreach (IHardware hardware in this.cpu.Hardware)
             {
-                return (UInt32)this.queryWmi("SELECT MaxClockSpeed FROM Win32_Processor", "MaxClockSpeed");
+                if (hardware.HardwareType == HardwareType.CPU)
+                {
+                    hardware.Update();
+                    foreach (ISensor sensor in hardware.Sensors)
+                    {
+                        if (sensor.SensorType == SensorType.Clock)
+                        {
+                            return sensor.Value.HasValue ? (float?)Math.Ceiling((double)sensor.Max) : null;
+                        }
+                    }
+                }
             }
-            catch (NullReferenceException e)
-            {
-                return 0;
-            }
+            return null;
         }
 
         /// <summary>
