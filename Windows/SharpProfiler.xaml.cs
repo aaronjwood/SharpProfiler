@@ -51,28 +51,34 @@ namespace Sharp_Profiler
             cpuType.Content = cpu.getProcessorType();
             cpuRevision.Content = cpu.getRevision();
 
-            initCpuUsage();
+            //Add CPU usage counters for the first time
+            updateCpuUsage(true);
 
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += updateCpuStats;
             timer.Start();
         }
 
-        private void initCpuUsage()
+        private void updateCpuUsage(bool init)
         {
             for (int i = 0; i < numberLogicalProcessors; i++)
             {
-                cpuUsageList.Items.Add("Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%");
+                string data = "Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%";
+                if (init)
+                {
+                    cpuUsageList.Items.Add(data);
+                }
+                else
+                {
+                    cpuUsageList.Items[i] = data;
+                }
             }
         }
 
         private void updateCpuStats(object sender, EventArgs e)
         {
             //CPU usage list
-            for (int i = 0; i < numberLogicalProcessors; i++)
-            {
-                cpuUsageList.Items[i] = "Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%";
-            }
+            updateCpuUsage(false);
 
             //Current clock speed
             cpuCurrentClockSpeed.Content = cpu.getCurrentClockSpeed() + " MHz";
