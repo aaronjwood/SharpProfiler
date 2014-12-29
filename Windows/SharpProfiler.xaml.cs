@@ -9,12 +9,15 @@ namespace Sharp_Profiler
     {
         private Cpu cpu;
         private DispatcherTimer timer;
+        private uint numberLogicalProcessors;
 
         public SharpProfiler()
         {
             InitializeComponent();
             cpu = new Cpu();
             timer = new DispatcherTimer();
+
+            numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
 
             cpuName.Content = cpu.getName();
             cpuAddressWidth.Content = cpu.getAddressWidth();
@@ -28,7 +31,7 @@ namespace Sharp_Profiler
             cpuL3CacheSpeed.Content = cpu.getL3CacheSpeed() + " MHz";
             cpuManufacturer.Content = cpu.getManufacturer();
             cpuNumberOfCores.Content = cpu.getNumberOfCores();
-            cpuNumberOfLogicalProcessors.Content = cpu.getNumberOfLogicalProcessors();
+            cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
             cpuNumberOfPhysicalProcessors.Content = cpu.getNumberOfPhysicalProcessors();
             cpuPlugAndPlayDeviceId.Content = cpu.getPnpDeviceId() != null ? cpu.getPnpDeviceId() : "Unknown";
 
@@ -48,18 +51,27 @@ namespace Sharp_Profiler
             cpuType.Content = cpu.getProcessorType();
             cpuRevision.Content = cpu.getRevision();
 
+            initCpuUsage();
+
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += updateCpuStats;
             timer.Start();
         }
 
+        private void initCpuUsage()
+        {
+            for (int i = 0; i < numberLogicalProcessors; i++)
+            {
+                cpuUsageList.Items.Add("Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%");
+            }
+        }
+
         private void updateCpuStats(object sender, EventArgs e)
         {
             //CPU usage list
-            cpuUsageList.Items.Clear();
-            for (int i = 0; i < cpu.getNumberOfLogicalProcessors(); i++)
+            for (int i = 0; i < numberLogicalProcessors; i++)
             {
-                cpuUsageList.Items.Add("Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%");
+                cpuUsageList.Items[i] = "Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%";
             }
 
             //Current clock speed
