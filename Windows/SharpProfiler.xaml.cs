@@ -26,9 +26,9 @@ namespace Sharp_Profiler
             cpuDeviceId.Content = cpu.getDeviceId();
             cpuFamily.Content = cpu.getFamily() == "Other" ? cpu.getFamily() + " " + cpu.getOtherFamilyDescription() : cpu.getFamily();
             cpuL2CacheSize.Content = cpu.getL2CacheSize() + " KB";
-            cpuL2CacheSpeed.Content = cpu.getL2CacheSpeed() + " MHz";
+            cpuL2CacheSpeed.Content = cpu.getL2CacheSpeed() == 0 ? "Unknown" : cpu.getL2CacheSpeed() + " MHz";
             cpuL3CacheSize.Content = cpu.getL3CacheSize() + " KB";
-            cpuL3CacheSpeed.Content = cpu.getL3CacheSpeed() + " MHz";
+            cpuL3CacheSpeed.Content = cpu.getL3CacheSpeed() == 0 ? "Unknown" : cpu.getL3CacheSpeed() + " MHz";
             cpuManufacturer.Content = cpu.getManufacturer();
             cpuNumberOfCores.Content = cpu.getNumberOfCores();
             cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
