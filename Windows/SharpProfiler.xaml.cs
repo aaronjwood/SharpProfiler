@@ -23,7 +23,7 @@ namespace Sharp_Profiler
             numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
             loadPercentage = cpu.getLoadPercentage();
 
-            cpuName.Content = cpu.getName();
+            cpuName.Content = cpu.getName() ?? "Unknown";
             cpuAddressWidth.Content = cpu.getAddressWidth()?.ToString() ?? "Unknown";
             cpuArchitecture.Content = cpu.getArchitecture() ?? "Unknown";
             cpuVoltage.Content = cpu.getVoltage()?.ToString() ?? "Unknown";
