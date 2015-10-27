@@ -35,36 +35,9 @@ namespace Sharp_Profiler
             cpuL3CacheSpeed.Content = cpu.getL3CacheSpeed() == 0 ? "Unknown" : cpu.getL3CacheSpeed() + " MHz";
             cpuManufacturer.Content = cpu.getManufacturer();
             cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
-
-            UInt32? cores = cpu.getNumberOfCores();
-            if (cores == null)
-            {
-                cpuNumberOfCores.Content = "Unknown";
-            }
-            else
-            {
-                cpuNumberOfCores.Content = cores;
-            }
-
-            int? physicalProcessors = cpu.getNumberOfPhysicalProcessors();
-            if (physicalProcessors == null)
-            {
-                cpuNumberOfPhysicalProcessors.Content = "Unknown";
-            }
-            else
-            {
-                cpuNumberOfPhysicalProcessors.Content = physicalProcessors;
-            }
-
-            string plugAndPlay = cpu.getPnpDeviceId();
-            if (plugAndPlay == null)
-            {
-                cpuPlugAndPlayDeviceId.Content = "Unknown";
-            }
-            else
-            {
-                cpuPlugAndPlayDeviceId.Content = plugAndPlay;
-            }
+            cpuNumberOfCores.Content = cpu.getNumberOfCores()?.ToString() ?? "Unknown";
+            cpuNumberOfPhysicalProcessors.Content = cpu.getNumberOfPhysicalProcessors()?.ToString() ?? "Unknown";
+            cpuPlugAndPlayDeviceId.Content = cpu.getPnpDeviceId() ?? "Unknown";
 
             if (cpu.getPowerManagementCapabilities() == null)
             {
@@ -80,9 +53,7 @@ namespace Sharp_Profiler
 
             cpuId.Content = cpu.getProcessorId();
             cpuType.Content = cpu.getProcessorType();
-
-            UInt16? revision = cpu.getRevision();
-            cpuRevision.Content = revision != null ? revision.ToString() : "Unknown";
+            cpuRevision.Content = cpu.getRevision()?.ToString() ?? "Unknown";
 
             cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
 
