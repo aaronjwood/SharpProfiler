@@ -706,6 +706,15 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
+        /// Gets the current CPU load
+        /// </summary>
+        /// <returns>Performance counter that contains the load percentage</returns>
+        public PerformanceCounter getLoadPercentage()
+        {
+            return new PerformanceCounter("Processor", "% Processor Time", "_Total");
+        }
+
+        /// <summary>
         /// Instantiates the performance counters for retrieving CPU usage
         /// </summary>
         private void calculateUsage()

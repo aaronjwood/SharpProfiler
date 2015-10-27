@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace Sharp_Profiler
 {
@@ -10,6 +11,7 @@ namespace Sharp_Profiler
         private Cpu cpu;
         private DispatcherTimer timer;
         private uint numberLogicalProcessors;
+        private PerformanceCounter loadPercentage;
 
         public SharpProfiler()
         {
@@ -18,6 +20,7 @@ namespace Sharp_Profiler
             timer = new DispatcherTimer();
 
             numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
+            loadPercentage = cpu.getLoadPercentage();
 
             cpuName.Content = cpu.getName();
             cpuAddressWidth.Content = cpu.getAddressWidth();
@@ -50,6 +53,7 @@ namespace Sharp_Profiler
             cpuId.Content = cpu.getProcessorId();
             cpuType.Content = cpu.getProcessorType();
             cpuRevision.Content = cpu.getRevision();
+            cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
 
             //Add CPU usage counters for the first time
             updateCpuUsage(true);
@@ -88,6 +92,9 @@ namespace Sharp_Profiler
 
             //Max clock speed
             cpuMaxClockSpeed.Content = cpu.getMaxClockSpeed() + " MHz";
+
+            //Current load
+            cpuCurrentLoad.Content = loadPercentage.NextValue().ToString("00.00") + "%";
         }
     }
 }
