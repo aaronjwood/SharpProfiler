@@ -517,7 +517,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the number of cores in the CPU
         /// </summary>
         /// <returns>The number of CPU cores</returns>
-        public UInt32 getNumberOfCores()
+        public UInt32? getNumberOfCores()
         {
             try
             {
@@ -525,7 +525,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return 0;
+                return null;
             }
         }
 

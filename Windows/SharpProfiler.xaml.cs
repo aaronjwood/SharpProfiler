@@ -34,9 +34,17 @@ namespace Sharp_Profiler
             cpuL3CacheSize.Content = cpu.getL3CacheSize() + " KB";
             cpuL3CacheSpeed.Content = cpu.getL3CacheSpeed() == 0 ? "Unknown" : cpu.getL3CacheSpeed() + " MHz";
             cpuManufacturer.Content = cpu.getManufacturer();
-            cpuNumberOfCores.Content = cpu.getNumberOfCores();
             cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
 
+            UInt32? cores = cpu.getNumberOfCores();
+            if (cores == null)
+            {
+                cpuNumberOfCores.Content = "Unknown";
+            }
+            else
+            {
+                cpuNumberOfCores.Content = cores;
+            }
 
             int? physicalProcessors = cpu.getNumberOfPhysicalProcessors();
             if (physicalProcessors == null)
