@@ -13,6 +13,9 @@ namespace Sharp_Profiler
         private uint numberLogicalProcessors;
         private PerformanceCounter loadPercentage;
 
+        /// <summary>
+        /// Window initialization
+        /// </summary>
         public SharpProfiler()
         {
             InitializeComponent();
@@ -63,6 +66,10 @@ namespace Sharp_Profiler
             timer.Start();
         }
 
+        /// <summary>
+        /// Updates the CPU core usages either for the first time or continually
+        /// </summary>
+        /// <param name="init">Dictates if the usages should be added for the first time or updated</param>
         private void updateCpuUsage(bool init)
         {
             for (int i = 0; i < numberLogicalProcessors; i++)
@@ -79,6 +86,11 @@ namespace Sharp_Profiler
             }
         }
 
+        /// <summary>
+        /// Continually updates various CPU values that constantly change in a running system
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void updateCpuStats(object sender, EventArgs e)
         {
             //CPU usage list
