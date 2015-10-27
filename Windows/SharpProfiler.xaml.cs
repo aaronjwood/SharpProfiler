@@ -58,6 +58,16 @@ namespace Sharp_Profiler
             cpuRevision.Content = cpu.getRevision();
             cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
 
+            bool? cpuVirtualizationStatus = cpu.getVirtualizationEnabled();
+            if (cpuVirtualizationStatus != null)
+            {
+                cpuVirtualization.Content = cpuVirtualizationStatus == true ? "Yes" : "No";
+            }
+            else
+            {
+                cpuVirtualization.Content = "Unknown";
+            }
+
             //Add CPU usage counters for the first time
             updateCpuUsage(true);
 

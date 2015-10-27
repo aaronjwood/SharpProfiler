@@ -120,6 +120,8 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Current Load:" />
                             <Label Padding="4,4,4,4" Grid.Row="0" Grid.Column="1" Name="cpuCurrentLoad" />
+                            <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Virtualization Enabled:" />
+                            <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="cpuVirtualization" />
                         </Grid>
                         <TextBlock Padding="4,10,4,0" Grid.Row="1" Text="CPU Load:" />
                     </Grid>

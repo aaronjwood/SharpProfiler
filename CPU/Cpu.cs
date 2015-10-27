@@ -716,6 +716,22 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
+        /// Determines if virtualization extensions are enabled or not
+        /// </summary>
+        /// <returns>Virtualization extensions status</returns>
+        public bool? getVirtualizationEnabled()
+        {
+            try
+            {
+                return (bool)this.queryWmi("SELECT VirtualizationFirmwareEnabled FROM Win32_Processor", "VirtualizationFirmwareEnabled");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Instantiates the performance counters for retrieving CPU usage
         /// </summary>
         private void calculateUsage()
