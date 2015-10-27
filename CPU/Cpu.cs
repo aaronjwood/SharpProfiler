@@ -104,7 +104,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the current voltage of the CPU.
         /// </summary>
         /// <returns>CPU voltage or 0 if the SMBIOS doesn't present a voltage value</returns>
-        public Decimal getVoltage()
+        public Decimal? getVoltage()
         {
             //Make sure we can actually obtain the voltage
             try
@@ -114,7 +114,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return new Decimal(0);
+                return null;
             }
         }
 
