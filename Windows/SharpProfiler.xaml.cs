@@ -8,8 +8,8 @@ namespace Sharp_Profiler
 {
     public partial class SharpProfiler : Window
     {
-        private Cpu cpu;
-        private DispatcherTimer timer;
+        private Cpu cpu = new Cpu();
+        private DispatcherTimer timer = new DispatcherTimer();
         private uint numberLogicalProcessors;
         private PerformanceCounter loadPercentage;
 
@@ -19,8 +19,6 @@ namespace Sharp_Profiler
         public SharpProfiler()
         {
             InitializeComponent();
-            cpu = new Cpu();
-            timer = new DispatcherTimer();
 
             numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
             loadPercentage = cpu.getLoadPercentage();
