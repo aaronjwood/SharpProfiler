@@ -133,12 +133,12 @@
             </TabItem>
             <TabItem Header="Memory" Name="memoryTab">
                 <Grid>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="Disk" Name="storageTab">
                 <Grid>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="Network" Name="networkTab">

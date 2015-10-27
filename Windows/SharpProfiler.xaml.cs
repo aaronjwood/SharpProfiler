@@ -46,7 +46,7 @@ namespace Sharp_Profiler
                     cpuPowerManagementCapabilities.Content += item + Environment.NewLine;
                 }
             }
-            
+
             cpuId.Content = cpu.getProcessorId();
             cpuType.Content = cpu.getProcessorType();
             cpuRevision.Content = cpu.getRevision();

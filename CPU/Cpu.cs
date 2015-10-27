@@ -39,7 +39,7 @@ namespace Sharp_Profiler.CPU
             {
                 return 0;
             }
-            
+
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Sharp_Profiler.CPU
             {
                 return null;
             }
-            
+
         }
 
         /// <summary>
