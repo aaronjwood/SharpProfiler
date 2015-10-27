@@ -29,7 +29,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the CPU address width
         /// </summary>
         /// <returns>CPU address width</returns>
-        public UInt16 getAddressWidth()
+        public UInt16? getAddressWidth()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return 0;
+                return null;
             }
 
         }

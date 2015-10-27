@@ -24,7 +24,7 @@ namespace Sharp_Profiler
             loadPercentage = cpu.getLoadPercentage();
 
             cpuName.Content = cpu.getName();
-            cpuAddressWidth.Content = cpu.getAddressWidth();
+            cpuAddressWidth.Content = cpu.getAddressWidth()?.ToString() ?? "Unknown";
             cpuArchitecture.Content = cpu.getArchitecture() ?? "Unknown";
             cpuVoltage.Content = cpu.getVoltage()?.ToString() ?? "Unknown";
             cpuDeviceId.Content = cpu.getDeviceId() ?? "Unknown";
