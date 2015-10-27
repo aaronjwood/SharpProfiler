@@ -25,7 +25,7 @@ namespace Sharp_Profiler
 
             cpuName.Content = cpu.getName();
             cpuAddressWidth.Content = cpu.getAddressWidth();
-            cpuArchitecture.Content = cpu.getArchitecture();
+            cpuArchitecture.Content = cpu.getArchitecture() ?? "Unknown";
             cpuVoltage.Content = cpu.getVoltage()?.ToString() ?? "Unknown";
             cpuDeviceId.Content = cpu.getDeviceId() ?? "Unknown";
             cpuFamily.Content = cpu.getFamily() == "Other" ? cpu.getFamily() + " " + cpu.getOtherFamilyDescription() : cpu.getFamily();
