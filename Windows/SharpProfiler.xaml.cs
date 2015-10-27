@@ -56,7 +56,15 @@ namespace Sharp_Profiler
                 cpuNumberOfPhysicalProcessors.Content = physicalProcessors;
             }
 
-            cpuPlugAndPlayDeviceId.Content = cpu.getPnpDeviceId() != null ? cpu.getPnpDeviceId() : "Unknown";
+            string plugAndPlay = cpu.getPnpDeviceId();
+            if (plugAndPlay == null)
+            {
+                cpuPlugAndPlayDeviceId.Content = "Unknown";
+            }
+            else
+            {
+                cpuPlugAndPlayDeviceId.Content = plugAndPlay;
+            }
 
             if (cpu.getPowerManagementCapabilities() == null)
             {
