@@ -10,7 +10,7 @@ namespace Sharp_Profiler
     {
         private Cpu cpu = new Cpu();
         private DispatcherTimer timer = new DispatcherTimer();
-        private uint numberLogicalProcessors;
+        private int numberLogicalProcessors;
         private PerformanceCounter loadPercentage;
 
         /// <summary>
@@ -37,8 +37,9 @@ namespace Sharp_Profiler
             cpuNumberOfCores.Content = cpu.getNumberOfCores();
             cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
 
+
             int? physicalProcessors = cpu.getNumberOfPhysicalProcessors();
-            if(physicalProcessors == null)
+            if (physicalProcessors == null)
             {
                 cpuNumberOfPhysicalProcessors.Content = "Unknown";
             }

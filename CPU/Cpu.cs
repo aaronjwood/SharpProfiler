@@ -533,16 +533,9 @@ namespace Sharp_Profiler.CPU
         /// Gets the number of logical processors on a system
         /// </summary>
         /// <returns>The number of logical processors</returns>
-        public UInt32 getNumberOfLogicalProcessors()
+        public int getNumberOfLogicalProcessors()
         {
-            try
-            {
-                return (UInt32)this.queryWmi("SELECT NumberOfLogicalProcessors FROM Win32_Processor", "NumberOfLogicalProcessors");
-            }
-            catch (Exception e)
-            {
-                return 0;
-            }
+            return Environment.ProcessorCount;
         }
 
         /// <summary>
