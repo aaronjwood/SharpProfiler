@@ -361,8 +361,9 @@ namespace Sharp_Profiler.CPU
                         return "DSP";
                     case 500:
                         return "Video Processor";
+                    default:
+                        return "Unknown";
                 }
-                return null;
             }
             catch (NullReferenceException e)
             {
