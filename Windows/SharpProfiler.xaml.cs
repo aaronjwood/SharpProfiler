@@ -51,8 +51,8 @@ namespace Sharp_Profiler
                 }
             }
 
-            cpuId.Content = cpu.getProcessorId();
-            cpuType.Content = cpu.getProcessorType();
+            cpuId.Content = cpu.getProcessorId() ?? "Unknown";
+            cpuType.Content = cpu.getProcessorType() ?? "Unknown";
             cpuRevision.Content = cpu.getRevision()?.ToString() ?? "Unknown";
 
             cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
