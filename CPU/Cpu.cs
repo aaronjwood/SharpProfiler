@@ -694,7 +694,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the CPU revision level
         /// </summary>
         /// <returns>CPU revision level</returns>
-        public UInt16 getRevision()
+        public UInt16? getRevision()
         {
             try
             {
@@ -702,7 +702,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return 0;
+                return null;
             }
         }
 

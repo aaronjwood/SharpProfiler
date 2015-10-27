@@ -55,7 +55,10 @@ namespace Sharp_Profiler
 
             cpuId.Content = cpu.getProcessorId();
             cpuType.Content = cpu.getProcessorType();
-            cpuRevision.Content = cpu.getRevision();
+
+            UInt16? revision = cpu.getRevision();
+            cpuRevision.Content = revision != null ? revision.ToString() : "Unknown";
+
             cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
 
             bool? cpuVirtualizationStatus = cpu.getVirtualizationEnabled();
