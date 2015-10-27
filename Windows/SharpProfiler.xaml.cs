@@ -36,7 +36,17 @@ namespace Sharp_Profiler
             cpuManufacturer.Content = cpu.getManufacturer();
             cpuNumberOfCores.Content = cpu.getNumberOfCores();
             cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
-            cpuNumberOfPhysicalProcessors.Content = cpu.getNumberOfPhysicalProcessors();
+
+            int? physicalProcessors = cpu.getNumberOfPhysicalProcessors();
+            if(physicalProcessors == null)
+            {
+                cpuNumberOfPhysicalProcessors.Content = "Unknown";
+            }
+            else
+            {
+                cpuNumberOfPhysicalProcessors.Content = physicalProcessors;
+            }
+
             cpuPlugAndPlayDeviceId.Content = cpu.getPnpDeviceId() != null ? cpu.getPnpDeviceId() : "Unknown";
 
             if (cpu.getPowerManagementCapabilities() == null)

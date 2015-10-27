@@ -549,7 +549,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the number of physical processors in a system
         /// </summary>
         /// <returns>The number of physical processors</returns>
-        public int getNumberOfPhysicalProcessors()
+        public int? getNumberOfPhysicalProcessors()
         {
             try
             {
@@ -557,7 +557,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return 0;
+                return null;
             }
         }
 
