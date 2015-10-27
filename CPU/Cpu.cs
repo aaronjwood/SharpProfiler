@@ -35,7 +35,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt16)this.queryWmi("SELECT AddressWidth FROM Win32_Processor", "AddressWidth");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -70,7 +70,7 @@ namespace Sharp_Profiler.CPU
                 }
                 return null;
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -112,7 +112,7 @@ namespace Sharp_Profiler.CPU
                 UInt16 voltage = (UInt16)this.queryWmi("SELECT CurrentVoltage FROM Win32_Processor", "CurrentVoltage");
                 return Convert.ToDecimal(voltage) / 10;
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return new Decimal(0);
             }
@@ -128,7 +128,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (string)this.queryWmi("SELECT DeviceID FROM Win32_Processor", "DeviceID");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -365,7 +365,7 @@ namespace Sharp_Profiler.CPU
                         return "Unknown";
                 }
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -381,7 +381,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt32)this.queryWmi("SELECT L2CacheSize FROM Win32_Processor", "L2CacheSize");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -397,7 +397,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt32)this.queryWmi("SELECT L2CacheSpeed FROM Win32_Processor", "L2CacheSpeed");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -413,7 +413,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt32)this.queryWmi("SELECT L3CacheSize FROM Win32_Processor", "L3CacheSize");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -429,7 +429,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt32)this.queryWmi("SELECT L3CacheSpeed FROM Win32_Processor", "L3CacheSpeed");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -445,7 +445,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (string)this.queryWmi("SELECT Manufacturer FROM Win32_Processor", "Manufacturer");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -507,7 +507,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (string)this.queryWmi("SELECT Name FROM Win32_Processor", "Name");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -523,7 +523,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt32)this.queryWmi("SELECT NumberOfCores FROM Win32_Processor", "NumberOfCores");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -539,7 +539,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt32)this.queryWmi("SELECT NumberOfLogicalProcessors FROM Win32_Processor", "NumberOfLogicalProcessors");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -555,7 +555,7 @@ namespace Sharp_Profiler.CPU
             {
                 return int.Parse(this.queryWmi("SELECT NumberOfProcessors FROM Win32_ComputerSystem", "NumberOfProcessors").ToString());
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -571,7 +571,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (string)this.queryWmi("SELECT OtherFamilyDescription FROM Win32_Processor", "OtherFamilyDescription");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -588,7 +588,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (string)this.queryWmi("SELECT PNPDeviceID FROM Win32_Processor", "PNPDeviceID");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -636,7 +636,7 @@ namespace Sharp_Profiler.CPU
                 }
                 return powerManagementDescriptions;
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -652,7 +652,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (string)this.queryWmi("SELECT ProcessorId FROM Win32_Processor", "ProcessorId");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -684,7 +684,7 @@ namespace Sharp_Profiler.CPU
                 }
                 return null;
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -700,7 +700,7 @@ namespace Sharp_Profiler.CPU
             {
                 return (UInt16)this.queryWmi("SELECT Revision FROM Win32_Processor", "Revision");
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 return 0;
             }
