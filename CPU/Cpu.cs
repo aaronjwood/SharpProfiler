@@ -327,6 +327,8 @@ namespace Sharp_Profiler.CPU
                         return "Intel Pentium M Processor";
                     case 190:
                         return "K7";
+                    case 198:
+                        return "Intel Core i7-2760QM";
                     case 200:
                         return "IBM390 Family";
                     case 201:
