@@ -375,7 +375,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the CPU's L2 cache size
         /// </summary>
         /// <returns>CPU L2 cache size in KB</returns>
-        public UInt32 getL2CacheSize()
+        public UInt32? getL2CacheSize()
         {
             try
             {
@@ -383,7 +383,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return 0;
+                return null;
             }
         }
 
