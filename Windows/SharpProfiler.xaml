@@ -172,6 +172,8 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Bank Label:" />
                         <Label Padding="4,4,4,4" Grid.Row="0" Grid.Column="1" Name="memoryBankLabel" />
+                        <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Capacity:" />
+                        <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="memoryCapacity" />
                     </Grid>
                 </DockPanel>
             </TabItem>

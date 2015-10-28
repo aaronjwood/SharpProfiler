@@ -111,6 +111,7 @@ namespace Sharp_Profiler
         {
             Ram memory = new Ram();
             memoryBankLabel.Content = memory.getBankLabel() ?? "Unknown";
+            memoryCapacity.Content = (memory.getCapacity()?.ToString() ?? "Unknown") + " MB";
         }
     }
 }
