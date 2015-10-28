@@ -33,7 +33,7 @@ namespace Sharp_Profiler
             cpuL2CacheSpeed.Content = (cpu.getL2CacheSpeed()?.ToString() ?? "Unknown") + " MHz";
             cpuL3CacheSize.Content = (cpu.getL3CacheSize()?.ToString() ?? "Unknown") + " KB";
             cpuL3CacheSpeed.Content = (cpu.getL3CacheSpeed()?.ToString() ?? "Unknown") + " MHz";
-            cpuManufacturer.Content = cpu.getManufacturer();
+            cpuManufacturer.Content = cpu.getManufacturer() ?? "Unknown";
             cpuNumberOfLogicalProcessors.Content = numberLogicalProcessors;
             cpuNumberOfCores.Content = cpu.getNumberOfCores()?.ToString() ?? "Unknown";
             cpuNumberOfPhysicalProcessors.Content = cpu.getNumberOfPhysicalProcessors()?.ToString() ?? "Unknown";
