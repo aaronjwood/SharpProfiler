@@ -1,4 +1,5 @@
 ﻿using Sharp_Profiler.Hardware;
+using System;
 
 namespace Sharp_Profiler.Memory
 {
@@ -10,7 +11,14 @@ namespace Sharp_Profiler.Memory
         /// <returns>Bank label</returns>
         public string getBankLabel()
         {
-            return (string)this.queryWmi("SELECT BankLabel FROM Win32_PhysicalMemory", "BankLabel");
+            try
+            {
+                return (string)this.queryWmi("SELECT BankLabel FROM Win32_PhysicalMemory", "BankLabel");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }
