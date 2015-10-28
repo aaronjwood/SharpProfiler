@@ -391,7 +391,7 @@ namespace Sharp_Profiler.CPU
         /// Gets the CPU's L2 cache speed
         /// </summary>
         /// <returns>CPU L2 cache speed in MHz</returns>
-        public UInt32 getL2CacheSpeed()
+        public UInt32? getL2CacheSpeed()
         {
             try
             {
@@ -399,7 +399,7 @@ namespace Sharp_Profiler.CPU
             }
             catch (Exception e)
             {
-                return 0;
+                return null;
             }
         }
 
