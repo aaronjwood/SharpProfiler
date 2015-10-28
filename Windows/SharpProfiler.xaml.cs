@@ -61,6 +61,7 @@ namespace Sharp_Profiler
                 }
             }
 
+            //Delegate used for continually updating the CPU usage for each core
             var updateCpuUsage = new Action<bool>(init =>
             {
                 for (int i = 0; i < numberLogicalProcessors; i++)
@@ -76,9 +77,6 @@ namespace Sharp_Profiler
                     }
                 }
             });
-
-            //Add CPU usage counters for the first time
-            updateCpuUsage(true);
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -100,6 +98,9 @@ namespace Sharp_Profiler
                 cpuCurrentLoad.Content = loadPercentage.NextValue().ToString("00.00") + "%";
             };
             timer.Start();
+
+            //Add CPU usage counters for the first time
+            updateCpuUsage(true);
         }
     }
 }
