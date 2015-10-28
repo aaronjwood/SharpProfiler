@@ -1,4 +1,5 @@
 ﻿using Sharp_Profiler.CPU;
+using Sharp_Profiler.RAM;
 using System;
 using System.Windows;
 using System.Windows.Threading;
@@ -16,6 +17,7 @@ namespace Sharp_Profiler
             InitializeComponent();
 
             initCpu();
+            initMemory();
         }
 
         /// <summary>
@@ -103,6 +105,12 @@ namespace Sharp_Profiler
 
             //Add CPU usage counters for the first time
             updateCpuUsage(true);
+        }
+
+        private void initMemory()
+        {
+            Memory memory = new Memory();
+            memoryBankLabel.Content = memory.getBankLabel() ?? "Unknown";
         }
     }
 }
