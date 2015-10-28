@@ -54,18 +54,8 @@ namespace Sharp_Profiler
             cpuId.Content = cpu.getProcessorId() ?? "Unknown";
             cpuType.Content = cpu.getProcessorType() ?? "Unknown";
             cpuRevision.Content = cpu.getRevision()?.ToString() ?? "Unknown";
-
             cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
-
-            bool? cpuVirtualizationStatus = cpu.getVirtualizationEnabled();
-            if (cpuVirtualizationStatus != null)
-            {
-                cpuVirtualization.Content = cpuVirtualizationStatus == true ? "Yes" : "No";
-            }
-            else
-            {
-                cpuVirtualization.Content = "Unknown";
-            }
+            cpuVirtualization.Content = ((cpu.getVirtualizationEnabled()?.ToString() ?? "Unknown") == "True" ? "Yes" : "No");
 
             //Add CPU usage counters for the first time
             updateCpuUsage(true);
