@@ -8,11 +8,6 @@ namespace Sharp_Profiler
 {
     public partial class SharpProfiler : Window
     {
-        private Cpu cpu = new Cpu();
-        private DispatcherTimer timer = new DispatcherTimer();
-        private int numberLogicalProcessors;
-        private PerformanceCounter loadPercentage;
-
         /// <summary>
         /// Window initialization
         /// </summary>
@@ -20,8 +15,18 @@ namespace Sharp_Profiler
         {
             InitializeComponent();
 
-            numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
-            loadPercentage = cpu.getLoadPercentage();
+            initCpu();
+        }
+
+        /// <summary>
+        /// Initializes the whole CPU section
+        /// Retrieves all of the necessary information and populates the UI
+        /// </summary>
+        private void initCpu()
+        {
+            Cpu cpu = new Cpu();
+            int numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
+            PerformanceCounter loadPercentage = cpu.getLoadPercentage();
 
             cpuName.Content = cpu.getName() ?? "Unknown";
             cpuAddressWidth.Content = cpu.getAddressWidth()?.ToString() ?? "Unknown";
@@ -38,6 +43,11 @@ namespace Sharp_Profiler
             cpuNumberOfCores.Content = cpu.getNumberOfCores()?.ToString() ?? "Unknown";
             cpuNumberOfPhysicalProcessors.Content = cpu.getNumberOfPhysicalProcessors()?.ToString() ?? "Unknown";
             cpuPlugAndPlayDeviceId.Content = cpu.getPnpDeviceId() ?? "Unknown";
+            cpuId.Content = cpu.getProcessorId() ?? "Unknown";
+            cpuType.Content = cpu.getProcessorType() ?? "Unknown";
+            cpuRevision.Content = cpu.getRevision()?.ToString() ?? "Unknown";
+            cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
+            cpuVirtualization.Content = ((cpu.getVirtualizationEnabled()?.ToString() ?? "Unknown") == "True" ? "Yes" : "No");
 
             if (cpu.getPowerManagementCapabilities() == null)
             {
@@ -51,61 +61,45 @@ namespace Sharp_Profiler
                 }
             }
 
-            cpuId.Content = cpu.getProcessorId() ?? "Unknown";
-            cpuType.Content = cpu.getProcessorType() ?? "Unknown";
-            cpuRevision.Content = cpu.getRevision()?.ToString() ?? "Unknown";
-            cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
-            cpuVirtualization.Content = ((cpu.getVirtualizationEnabled()?.ToString() ?? "Unknown") == "True" ? "Yes" : "No");
+            var updateCpuUsage = new Action<bool>(init =>
+            {
+                for (int i = 0; i < numberLogicalProcessors; i++)
+                {
+                    string data = "Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%";
+                    if (init)
+                    {
+                        cpuUsageList.Items.Add(data);
+                    }
+                    else
+                    {
+                        cpuUsageList.Items[i] = data;
+                    }
+                }
+            });
 
             //Add CPU usage counters for the first time
             updateCpuUsage(true);
 
+            DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += updateCpuStats;
-            timer.Start();
-        }
-
-        /// <summary>
-        /// Updates the CPU core usages either for the first time or continually
-        /// </summary>
-        /// <param name="init">Dictates if the usages should be added for the first time or updated</param>
-        private void updateCpuUsage(bool init)
-        {
-            for (int i = 0; i < numberLogicalProcessors; i++)
+            timer.Tick += delegate (object sender, EventArgs e)
             {
-                string data = "Core #" + i + ":   " + cpu.UsageCounters[i].NextValue().ToString("00.00") + "%";
-                if (init)
-                {
-                    cpuUsageList.Items.Add(data);
-                }
-                else
-                {
-                    cpuUsageList.Items[i] = data;
-                }
-            }
-        }
+                //CPU usage list
+                updateCpuUsage(false);
 
-        /// <summary>
-        /// Continually updates various CPU values that constantly change in a running system
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void updateCpuStats(object sender, EventArgs e)
-        {
-            //CPU usage list
-            updateCpuUsage(false);
+                //Current clock speed
+                cpuCurrentClockSpeed.Content = cpu.getCurrentClockSpeed() + " MHz";
 
-            //Current clock speed
-            cpuCurrentClockSpeed.Content = cpu.getCurrentClockSpeed() + " MHz";
+                //Min clock speed
+                cpuMinClockSpeed.Content = cpu.getMinClockSpeed() + " MHz";
 
-            //Min clock speed
-            cpuMinClockSpeed.Content = cpu.getMinClockSpeed() + " MHz";
+                //Max clock speed
+                cpuMaxClockSpeed.Content = cpu.getMaxClockSpeed() + " MHz";
 
-            //Max clock speed
-            cpuMaxClockSpeed.Content = cpu.getMaxClockSpeed() + " MHz";
-
-            //Current load
-            cpuCurrentLoad.Content = loadPercentage.NextValue().ToString("00.00") + "%";
+                //Current load
+                cpuCurrentLoad.Content = loadPercentage.NextValue().ToString("00.00") + "%";
+            };
+            timer.Start();
         }
     }
 }
