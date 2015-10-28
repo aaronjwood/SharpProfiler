@@ -60,5 +60,21 @@ namespace Sharp_Profiler.Memory
                 return null;
             }
         }
+
+        /// <summary>
+        /// Gets the description of the object
+        /// </summary>
+        /// <returns>Description</returns>
+        public string getDescription()
+        {
+            try
+            {
+                return (string)this.queryWmi("SELECT Description FROM Win32_PhysicalMemory", "Description");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }
