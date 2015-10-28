@@ -49,6 +49,7 @@ namespace Sharp_Profiler
             cpuCurrentLoad.Content = loadPercentage.NextValue().ToString() + "%";
             cpuVirtualization.Content = ((cpu.getVirtualizationEnabled()?.ToString() ?? "Unknown") == "True" ? "Yes" : "No");
             cpuStepping.Content = cpu.getStepping() ?? "Unknown";
+            cpuUniqueId.Content = cpu.getUniqueId() ?? "Unknown";
 
             if (cpu.getPowerManagementCapabilities() == null)
             {

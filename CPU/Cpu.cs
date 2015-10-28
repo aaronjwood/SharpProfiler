@@ -743,6 +743,23 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
+        /// Gets the unique ID of the processor
+        /// This is unique to the processor's family
+        /// </summary>
+        /// <returns>CPU unique ID</returns>
+        public string getUniqueId()
+        {
+            try
+            {
+                return (string)this.queryWmi("SELECT UniqueId FROM Win32_Processor", "UniqueId");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Instantiates the performance counters for retrieving CPU usage
         /// </summary>
         private void calculateUsage()
