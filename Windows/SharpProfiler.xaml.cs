@@ -1,5 +1,5 @@
 ﻿using Sharp_Profiler.CPU;
-using Sharp_Profiler.RAM;
+using Sharp_Profiler.Memory;
 using System;
 using System.Windows;
 using System.Windows.Threading;
@@ -26,7 +26,7 @@ namespace Sharp_Profiler
         /// </summary>
         private void initCpu()
         {
-            Cpu cpu = new Cpu();
+            Processor cpu = new Processor();
             int numberLogicalProcessors = cpu.getNumberOfLogicalProcessors();
             PerformanceCounter loadPercentage = cpu.getLoadPercentage();
 
@@ -109,7 +109,7 @@ namespace Sharp_Profiler
 
         private void initMemory()
         {
-            Memory memory = new Memory();
+            Ram memory = new Ram();
             memoryBankLabel.Content = memory.getBankLabel() ?? "Unknown";
         }
     }

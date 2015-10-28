@@ -1,11 +1,11 @@
-﻿using OpenHardwareMonitor.Hardware;
+﻿using Sharp_Profiler.Hardware;
+using OpenHardwareMonitor.Hardware;
 using System;
 using System.Diagnostics;
-using System.Management;
 
 namespace Sharp_Profiler.CPU
 {
-    class Cpu
+    class Processor : Component
     {
         /// <summary>
         /// Gets/sets the performance property which holds performance counters for the CPU
@@ -14,9 +14,9 @@ namespace Sharp_Profiler.CPU
         private Computer cpu;
 
         /// <summary>
-        /// Creates a new Cpu object and kicks off performance counters
+        /// Creates a new Processor object and kicks off performance counters
         /// </summary>
-        public Cpu()
+        public Processor()
         {
             UsageCounters = new PerformanceCounter[this.getNumberOfLogicalProcessors()];
             this.calculateUsage();
@@ -769,22 +769,5 @@ namespace Sharp_Profiler.CPU
                 this.UsageCounters[i] = new PerformanceCounter("Processor", "% Processor Time", i.ToString());
             }
         }
-
-        /// <summary>
-        /// Performs queries against WMI and returns an object with the specified property
-        /// </summary>
-        /// <param name="query">The WMI query</param>
-        /// <param name="property">The property that you want returned</param>
-        /// <returns>WMI object</returns>
-        private object queryWmi(string query, string property)
-        {
-            foreach (ManagementObject item in new ManagementObjectSearcher(query).Get())
-            {
-                return item[property];
-            }
-            return null;
-        }
-
-
     }
 }

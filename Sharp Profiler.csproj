@@ -106,8 +106,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CPU\Cpu.cs" />
-    <Compile Include="Memory\Memory.cs" />
+    <Compile Include="CPU\Processor.cs" />
+    <Compile Include="Hardware\Component.cs" />
+    <Compile Include="Memory\Ram.cs" />
     <Compile Include="Windows\SharpProfiler.xaml.cs">
       <DependentUpon>SharpProfiler.xaml</DependentUpon>
       <SubType>Code</SubType>
