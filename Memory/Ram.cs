@@ -44,5 +44,21 @@ namespace Sharp_Profiler.Memory
                 return null;
             }
         }
+
+        /// <summary>
+        /// Gets the memory data width in bits
+        /// </summary>
+        /// <returns>Memory data width</returns>
+        public UInt16? getDataWidth()
+        {
+            try
+            {
+                return (UInt16)this.queryWmi("SELECT DataWidth FROM Win32_PhysicalMemory", "DataWidth");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }
