@@ -76,5 +76,21 @@ namespace Sharp_Profiler.Memory
                 return null;
             }
         }
+
+        /// <summary>
+        /// Gets the name of the socket or circuit board that holds the memory
+        /// </summary>
+        /// <returns>Label of the socket or circuit board</returns>
+        public string getDeviceLocation()
+        {
+            try
+            {
+                return (string)this.queryWmi("SELECT DeviceLocator FROM Win32_PhysicalMemory", "DeviceLocator");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

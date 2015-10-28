@@ -178,6 +178,8 @@
                         <Label Padding="4,4,4,4" Grid.Row="2" Grid.Column="1" Name="memoryDataWidth" />
                         <TextBlock Padding="4,4,4,4" Grid.Row="3" Grid.Column="0" Text="Description:" />
                         <Label Padding="4,4,4,4" Grid.Row="3" Grid.Column="1" Name="memoryDescription" />
+                        <TextBlock Padding="4,4,4,4" Grid.Row="4" Grid.Column="0" Text="Location:" />
+                        <Label Padding="4,4,4,4" Grid.Row="4" Grid.Column="1" Name="memoryLocation" />
                     </Grid>
                 </DockPanel>
             </TabItem>

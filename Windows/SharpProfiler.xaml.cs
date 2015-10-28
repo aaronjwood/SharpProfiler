@@ -114,6 +114,7 @@ namespace Sharp_Profiler
             memoryCapacity.Content = (memory.getCapacity()?.ToString() ?? "Unknown") + " MB";
             memoryDataWidth.Content = (memory.getDataWidth()?.ToString() ?? "Unknown") + " bits";
             memoryDescription.Content = memory.getDescription() ?? "Unknown";
+            memoryLocation.Content = memory.getDeviceLocation() ?? "Unknown";
         }
     }
 }
