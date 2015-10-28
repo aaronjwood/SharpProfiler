@@ -122,6 +122,8 @@
                             <Label Padding="4,4,4,4" Grid.Row="0" Grid.Column="1" Name="cpuCurrentLoad" />
                             <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Virtualization Enabled:" />
                             <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="cpuVirtualization" />
+                            <TextBlock Padding="4,4,4,4" Grid.Row="2" Grid.Column="0" Text="Stepping:" />
+                            <Label Padding="4,4,4,4" Grid.Row="2" Grid.Column="1" Name="cpuStepping" />
                         </Grid>
                         <TextBlock Padding="4,10,4,0" Grid.Row="1" Text="CPU Load:" />
                     </Grid>

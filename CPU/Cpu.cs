@@ -727,6 +727,22 @@ namespace Sharp_Profiler.CPU
         }
 
         /// <summary>
+        /// Gets the revision level of the processor in the processor family
+        /// </summary>
+        /// <returns>CPU stepping</returns>
+        public string getStepping()
+        {
+            try
+            {
+                return (string)this.queryWmi("SELECT Stepping FROM Win32_Processor", "Stepping");
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Instantiates the performance counters for retrieving CPU usage
         /// </summary>
         private void calculateUsage()
