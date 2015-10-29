@@ -108,6 +108,10 @@ namespace Sharp_Profiler
             updateCpuUsage(true);
         }
 
+        /// <summary>
+        /// Initializes the whole memory section
+        /// Retrieves all of the necessary information and populates the UI
+        /// </summary>
         private void initMemory()
         {
             Ram memory = new Ram();
