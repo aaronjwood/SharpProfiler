@@ -7,14 +7,14 @@ namespace Sharp_Profiler.Memory
     class Ram : Component
     {
         /// <summary>
-        /// Gets the physically labeled bank where the memory is located
+        /// Gets all of the physically labeled banks where the memory is located
         /// </summary>
-        /// <returns>Bank label</returns>
-        public string getBankLabel()
+        /// <returns>Bank labels</returns>
+        public List<object> getBankLabels()
         {
             try
             {
-                return (string)this.queryWmi("SELECT BankLabel FROM Win32_PhysicalMemory", "BankLabel");
+                return this.queryWmi("SELECT BankLabel FROM Win32_PhysicalMemory", "BankLabel", 0);
             }
             catch (Exception e)
             {

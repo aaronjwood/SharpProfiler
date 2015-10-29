@@ -170,8 +170,8 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Bank Label:" />
-                        <Label Padding="4,4,4,4" Grid.Row="0" Grid.Column="1" Name="memoryBankLabel" />
+                        <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Bank:" />
+                        <ComboBox Grid.Row="0" Grid.Column="1" Name="memoryBankList"/>
                         <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Capacity:" />
                         <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="memoryCapacity" />
                         <TextBlock Padding="4,4,4,4" Grid.Row="2" Grid.Column="0" Text="Data Width:" />
@@ -180,6 +180,7 @@
                         <Label Padding="4,4,4,4" Grid.Row="3" Grid.Column="1" Name="memoryDescription" />
                         <TextBlock Padding="4,4,4,4" Grid.Row="4" Grid.Column="0" Text="Location:" />
                         <Label Padding="4,4,4,4" Grid.Row="4" Grid.Column="1" Name="memoryLocation" />
+
                     </Grid>
                 </DockPanel>
             </TabItem>

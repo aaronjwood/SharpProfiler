@@ -1,9 +1,9 @@
 ﻿using Sharp_Profiler.CPU;
 using Sharp_Profiler.Memory;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
-using System.Diagnostics;
 
 namespace Sharp_Profiler
 {
@@ -110,7 +110,8 @@ namespace Sharp_Profiler
         private void initMemory()
         {
             Ram memory = new Ram();
-            memoryBankLabel.Content = memory.getBankLabel() ?? "Unknown";
+            memoryBankList.ItemsSource = memory.getBankLabels();
+            memoryBankList.SelectedIndex = 0;
             memoryCapacity.Content = (memory.getCapacity()?.ToString() ?? "Unknown") + " MB";
             memoryDataWidth.Content = (memory.getDataWidth()?.ToString() ?? "Unknown") + " bits";
             memoryDescription.Content = memory.getDescription() ?? "Unknown";
