@@ -172,7 +172,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Padding="4,4,4,4" Grid.Row="0" Grid.Column="0" Text="Bank:" />
                         <ComboBox Grid.Row="0" Grid.Column="1" Name="memoryBankList"/>
-                        <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Capacity:" />
+                        <TextBlock Padding="4,4,4,4" Grid.Row="1" Grid.Column="0" Text="Total Installed:" />
                         <Label Padding="4,4,4,4" Grid.Row="1" Grid.Column="1" Name="memoryCapacity" />
                         <TextBlock Padding="4,4,4,4" Grid.Row="2" Grid.Column="0" Text="Data Width:" />
                         <Label Padding="4,4,4,4" Grid.Row="2" Grid.Column="1" Name="memoryDataWidth" />

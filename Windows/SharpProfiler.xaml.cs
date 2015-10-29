@@ -3,6 +3,7 @@ using Sharp_Profiler.Memory;
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace Sharp_Profiler
@@ -110,12 +111,25 @@ namespace Sharp_Profiler
         private void initMemory()
         {
             Ram memory = new Ram();
+
+            var getMemoryInfo = new Action<string>(bank =>
+            {
+                memoryDataWidth.Content = (memory.getDataWidth(bank)?.ToString() ?? "Unknown") + " bits";
+                memoryDescription.Content = memory.getDescription(bank) ?? "Unknown";
+                memoryLocation.Content = memory.getDeviceLocation(bank) ?? "Unknown";
+            });
+
             memoryBankList.ItemsSource = memory.getBankLabels();
             memoryBankList.SelectedIndex = 0;
+            getMemoryInfo(memoryBankList.SelectedItem.ToString());
+            memoryBankList.SelectionChanged += new SelectionChangedEventHandler(delegate (object sender, SelectionChangedEventArgs e)
+            {
+                string value = (sender as ComboBox).SelectedItem.ToString();
+                getMemoryInfo(value);
+            });
+
             memoryCapacity.Content = (memory.getCapacity()?.ToString() ?? "Unknown") + " MB";
-            memoryDataWidth.Content = (memory.getDataWidth()?.ToString() ?? "Unknown") + " bits";
-            memoryDescription.Content = memory.getDescription() ?? "Unknown";
-            memoryLocation.Content = memory.getDeviceLocation() ?? "Unknown";
+
         }
     }
 }

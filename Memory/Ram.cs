@@ -48,12 +48,13 @@ namespace Sharp_Profiler.Memory
         /// <summary>
         /// Gets the memory data width in bits
         /// </summary>
+        /// <param name="bank">Specifies which bank of memory to get information for</param>
         /// <returns>Memory data width</returns>
-        public UInt16? getDataWidth()
+        public UInt16? getDataWidth(string bank)
         {
             try
             {
-                return (UInt16)this.queryWmi("SELECT DataWidth FROM Win32_PhysicalMemory", "DataWidth");
+                return (UInt16)this.queryWmi("SELECT DataWidth FROM Win32_PhysicalMemory WHERE BankLabel = '" + bank + "'", "DataWidth");
             }
             catch (Exception e)
             {
@@ -64,12 +65,13 @@ namespace Sharp_Profiler.Memory
         /// <summary>
         /// Gets the description of the object
         /// </summary>
+        /// <param name="bank">Specifies which bank of memory to get information for</param>
         /// <returns>Description</returns>
-        public string getDescription()
+        public string getDescription(string bank)
         {
             try
             {
-                return (string)this.queryWmi("SELECT Description FROM Win32_PhysicalMemory", "Description");
+                return (string)this.queryWmi("SELECT Description FROM Win32_PhysicalMemory WHERE BankLabel = '" + bank + "'", "Description");
             }
             catch (Exception e)
             {
@@ -80,12 +82,13 @@ namespace Sharp_Profiler.Memory
         /// <summary>
         /// Gets the name of the socket or circuit board that holds the memory
         /// </summary>
+        /// <param name="bank">Specifies which bank of memory to get information for</param>
         /// <returns>Label of the socket or circuit board</returns>
-        public string getDeviceLocation()
+        public string getDeviceLocation(string bank)
         {
             try
             {
-                return (string)this.queryWmi("SELECT DeviceLocator FROM Win32_PhysicalMemory", "DeviceLocator");
+                return (string)this.queryWmi("SELECT DeviceLocator FROM Win32_PhysicalMemory WHERE BankLabel = '" + bank + "'", "DeviceLocator");
             }
             catch (Exception e)
             {
