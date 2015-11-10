@@ -428,7 +428,8 @@ namespace Sharp_Profiler.Hardware
         {
             try
             {
-                return (UInt32)this.queryWmi("SELECT L3CacheSpeed FROM Win32_Processor", "L3CacheSpeed");
+                UInt32? speed = (UInt32)this.queryWmi("SELECT L3CacheSpeed FROM Win32_Processor", "L3CacheSpeed");
+                return speed == 0 ? null : speed;
             }
             catch (Exception e)
             {
