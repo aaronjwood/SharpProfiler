@@ -1,5 +1,4 @@
-﻿using Sharp_Profiler.CPU;
-using Sharp_Profiler.Memory;
+﻿using Sharp_Profiler.Hardware;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -114,7 +113,7 @@ namespace Sharp_Profiler
         /// </summary>
         private void initMemory()
         {
-            Ram memory = new Ram();
+            Memory memory = new Memory();
 
             var getMemoryInfo = new Action<string>(bank =>
             {

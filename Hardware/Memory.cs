@@ -1,10 +1,9 @@
-﻿using Sharp_Profiler.Hardware;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Sharp_Profiler.Memory
+namespace Sharp_Profiler.Hardware
 {
-    class Ram : Component
+    class Memory : Component
     {
         /// <summary>
         /// Gets all of the physically labeled banks where the memory is located

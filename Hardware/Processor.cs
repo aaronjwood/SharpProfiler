@@ -1,9 +1,8 @@
-﻿using Sharp_Profiler.Hardware;
-using OpenHardwareMonitor.Hardware;
+﻿using OpenHardwareMonitor.Hardware;
 using System;
 using System.Diagnostics;
 
-namespace Sharp_Profiler.CPU
+namespace Sharp_Profiler.Hardware
 {
     class Processor : Component
     {
